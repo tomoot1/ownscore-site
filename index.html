@@ -41,6 +41,7 @@
   <a href="#wifi">WiFi</a>
   <a href="#bluetooth">Bluetooth</a>
   <a href="#vpn">VPN</a>
+  <a href="#faq">FAQ</a>
 </nav>
 
 <main>
@@ -55,70 +56,80 @@
 
 <section id="quickstart">
   <h2>Quick Start</h2>
-  <p>You must have at least two devices with OwnScore installed. Start OwnScore on both devices.</p>
+<p>To use OwnScore, you must have at least two devices with OwnScore installed.<br>
+Start OwnScore on both devices - a Select Mode dialog window will appear.</p>
 
-  <h3>On one device:</h3>
-  <div class="step-list">
-    <p>1. Select Base, push OK.</p>
-    <p>2. Modify Location, Team Names, and Team Colors, as necessary.</p>
-    <p>3. Push "Start Score Casting".</p>
-    <p>4. Caster score screen will appear with a Key QR Code. Swipe up on score to increment.</p>
-  </div>
+<h3>On one device:</h3>
+<div class="step-list">
+  <p>1. Select Caster, push OK.<br>
+  2. Modify Location, Team Names, and Team Colors, as necessary.<br>
+  3. Push 'Start Score Casting'.<br>
+  4. Caster score screen will appear with a Key QR Code.  Swipe up on score to increment.</p>
+</div>
 
-  <h3>On the other device:</h3>
-  <div class="step-list">
-    <p>5. Select Viewer, push OK.</p>
-    <p>6. Push Scan.</p>
-    <p>7. Scan Key QR code on Caster score screen (tap to enlarge).</p>
-  </div>
+<h3>On the other device:</h3>
+<div class="step-list">
+  <p>5. Select Viewer, push OK.<br>
+  6. Push Scan.<br>
+  7. Scan Key QR code on Caster score screen (tap to enlarge).</p>
+</div>
 
-  <h3>On both devices:</h3>
-  <div class="step-list">
-    <p>8. Scores will be displayed and synced across devices.</p>
-  </div>
+<h3>On Caster device:</h3>
+<div class="step-list">
+  <p>8. A dialog box will appear asking to grant control to Remote Device.  Push Grant or Deny.</p>
+</div>
+
+<h3>On Viewer device:</h3>
+<div class="step-list">
+  <p>9. A dialog box will appear confirming that control was requested and was granted or denied.  Then a Score Screen will be displayed with game score.</p>
+</div>
+
+<h3>On both devices:</h3>
+<div class="step-list">
+  <p>10. If control was granted, swiping up over a score increments the score on both devices.</p>
+</div>
 </section>
 
 <section id="controls">
   <h2>Controls</h2>
+<h3>Score Controls</h3>
+<ul>
+  <li>Swipe up on a score: +1</li>
+  <li>Two-finger swipe up: +2</li>
+  <li>Three-finger swipe up: +3</li>
+  <li>Swipe down on a score: -1</li>
+  <li>Two-finger swipe down: -2</li>
+  <li>Three-finger swipe down: -3</li>
+  <li>Horizontal swipe left: Undo</li>
+  <li>Horizontal swipe right: Redo</li>
+</ul>
 
-  <h3>Score Controls</h3>
-  <ul>
-    <li>Swipe up on a score: +1</li>
-    <li>Two-finger swipe up: +2</li>
-    <li>Three-finger swipe up: +3</li>
-    <li>Swipe down on a score: -1</li>
-    <li>Two-finger swipe down: -2</li>
-    <li>Three-finger swipe down: -3</li>
-    <li>Horizontal swipe left: Undo</li>
-    <li>Horizontal swipe right: Redo</li>
-  </ul>
+<h3>Buttons</h3>
+<ul>
+  <li>Save (tap): Save current set, advance to next</li>
+  <li>Save (long press): Mark match as Final</li>
+  <li>Zero (tap): Reset current set to 0-0</li>
+  <li>Zero (long press): Clear all sets</li>
+  <li>Stop: Stop broadcasting</li>
+</ul>
 
-  <h3>Buttons</h3>
-  <ul>
-    <li>Save (tap): Save current set, advance to next</li>
-    <li>Save (long press): Mark match as Final</li>
-    <li>Zero (tap): Reset current set to 0-0</li>
-    <li>Zero (long press): Clear all sets</li>
-    <li>Stop: Stop broadcasting</li>
-  </ul>
+<h3>Swap Area (between scores)</h3>
+<ul>
+  <li>Tap: Local swap (switches sides on this device only)</li>
+  <li>Long press: Global swap (switches sides on all devices)</li>
+</ul>
 
-  <h3>Swap Area (between scores)</h3>
-  <ul>
-    <li>Tap: Local swap (switches sides on this device only)</li>
-    <li>Long press: Global swap (switches sides on all devices)</li>
-  </ul>
+<h3>QR Code</h3>
+<ul>
+  <li>Tap QR code: Enlarge for easy scanning</li>
+</ul>
 
-  <h3>QR Code</h3>
-  <ul>
-    <li>Tap QR code: Enlarge for easy scanning</li>
-  </ul>
-
-  <h3>Screen Lock</h3>
-  <ul>
-    <li>Long press both scores simultaneously: Toggle screen lock</li>
-    <li>When locked: screen dims after 5 seconds</li>
-    <li>Tap anywhere: Wake screen for 5 seconds</li>
-  </ul>
+<h3>Screen Lock</h3>
+<ul>
+  <li>Long press both scores simultaneously: Toggle screen lock</li>
+  <li>When locked: screen dims after 5 seconds</li>
+  <li>Tap anywhere: Wake screen for 5 seconds</li>
+</ul>
 </section>
 
 <section id="lockkey">
@@ -132,16 +143,16 @@
 
 <section id="wifi">
   <h2>WiFi</h2>
-  <p>OwnScore is designed to work optimally on the local WiFi network. But many public WiFi networks have settings that inhibit OwnScore from functioning optimally. To get around these network configuration issues, OwnScore automatically tests the network and chooses one of three WiFi communications modes (W0, W1, W2) that will work within the network settings.</p>
-  <p>If none of the three communication modes will work, OwnScore resorts to using Bluetooth instead of WiFi. If Bluetooth's distance and environmental limitations make OwnScore unusable, there are several changes that could be done to make WiFi work.</p>
+<p>OwnScore is designed to work optimally on the local WiFi network. But many public WiFi networks have settings that inhibit OwnScore from functioning optimally. To get around these network configuration issues, OwnScore automatically tests the network and chooses one of three WiFi communications modes (W0, W1, W2) that will work within the network settings.</p>
+<p>If none of the three communication modes will work, OwnScore resorts to using Bluetooth instead of WiFi. If Bluetooth's distance and environmental limitations make OwnScore unusable, there are several changes that could be done to make WiFi work.</p>
 
-  <h3>WiFi Options</h3>
-  <p>If Bluetooth does not meet your needs, there are a few things you can try to get WiFi to work:</p>
-  <ul>
-    <li>Have the network administrator turn off AP Isolation (sometimes called Client Isolation).</li>
-    <li>If you are on a guest WiFi network, AP Isolation is often turned on by default. Try switching to a non-guest WiFi network.</li>
-    <li>Buy a small, cheap travel router and connect it to the WiFi in bridge or repeater mode, then have all devices connect to the WiFi network of the travel router.</li>
-  </ul>
+<h3>WiFi Options</h3>
+<p>If Bluetooth does not meet your needs, there are a few things you can try to get WiFi to work:</p>
+<ul>
+  <li>Have the network administrator turn off AP Isolation (sometimes called Client Isolation).</li>
+  <li>If you are on a guest WiFi network, AP Isolation is often turned on by default. Try switching to a non-guest WiFi network.</li>
+  <li>Buy a small, cheap travel router and connect it to the WiFi in bridge or repeater mode, then have all devices connect to the WiFi network of the travel router.</li>
+</ul>
 </section>
 
 <section id="bluetooth">
@@ -155,19 +166,29 @@
   <p>A VPN (Virtual Private Network) on any device can prevent OwnScore from working over WiFi.</p>
   <p>VPNs route network traffic through a remote server, which prevents devices on the same WiFi network from communicating directly with each other. This causes the network compatibility test to fail and forces OwnScore to fall back to Bluetooth.</p>
   <p>If OwnScore is not working as expected:</p>
-  <ul>
-    <li>Check if a VPN is active on your device (look for a VPN icon in the status bar or check Settings &gt; General &gt; VPN &amp; Device Management).</li>
-    <li>Disable the VPN on all devices running OwnScore.</li>
-    <li>If you must use a VPN, check if it has a "Allow Local Network Access" or "Split Tunneling" option that lets local network traffic bypass the VPN.</li>
-  </ul>
-  <p>Note: iCloud Private Relay (in Settings &gt; Apple Account &gt; iCloud) can also interfere. Try disabling it if you experience issues.</p>
+<ul>
+  <li>Check if a VPN is active on your device (look for a VPN icon in the status bar or check Settings &gt; General &gt; VPN &amp; Device Management).</li>
+  <li>Disable the VPN on all devices running OwnScore.</li>
+  <li>If you must use a VPN, check if it has a "Allow Local Network Access" or "Split Tunneling" option that lets local network traffic bypass the VPN.</li>
+</ul>
+<p>Note: iCloud Private Relay (in Settings &gt; Apple Account &gt; iCloud) can also interfere. Try disabling it if you experience issues.</p>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <p><strong>Q: I can save invalid set scores (where one score is not 25 or 15, or not win by 2).</strong></p>
+  <p>A: Because rules can change, OwnScore does not check for valid scores and trusts that the user operating the Caster enters valid scores.</p>
+  <p><strong>Q: Can any score update be undone?</strong></p>
+  <p>A: Yes, even marking a score as Final.</p>
+  <p><strong>Q: Are there some WiFi settings that prevent OwnScore from operating?</strong></p>
+  <p>A: Yes, WiFi networks are very complex and have settings that could prevent OwnScore from operating. If network settings cannot be modified, OwnScore can use Bluetooth instead of WiFi. Depending on your environment (how many Bluetooth and WiFi devices are in close physical proximity), Bluetooth may operate very well, especially outdoors. If OwnScore cannot use WiFi, give Bluetooth a try, you may be surprised.</p>
 </section>
 
 </main>
 
 <footer>
   <p>&copy; 2026 OwnScore. All rights reserved.</p>
-  <p>Contact: <a href="mailto:support@scorebt.com">support@scorebt.com</a></p>
+  <p>Contact: <a href="mailto:support@ownscore.app">support@ownscore.app</a></p>
 </footer>
 
 </body>
