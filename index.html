@@ -6,137 +6,92 @@
 <title>OwnScore Help</title>
 <meta name="description" content="OwnScore in-app help: setup, controls, Lock and Key, WiFi, Bluetooth, VPN and FAQ.">
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  color-scheme: light dark;
-  --bg:#f7f5fa; --panel:#ffffff; --ink:#1d1b24; --muted:#5d5869;
-  --line:#e2dde9; --accent:#5b3fd6; --accent-ink:#ffffff;
-  --chip:#efebf6; --fig:#f3f1f6;
+  --accent:#5b3fd6; --accent-soft:#ebe8fa;
+  --bg:#f5f5f5; --panel:#ffffff; --ink:#333333; --muted:#999999; --line:#dddddd;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#1b1a2e; --panel:#221f2b; --ink:#eae7f0; --muted:#a49eb2;
-    --line:#37323f; --accent:#a99cf5; --accent-ink:#1b1826;
-    --chip:#2c2836; --fig:#2a2633;
+  :root{
+    --accent:#a99cf5; --accent-soft:#2f2a3d;
+    --bg:#1b1a2e; --panel:#221f2b; --ink:#eae7f0; --muted:#a49eb2; --line:#37323f;
   }
 }
-:root[data-theme="dark"]{
-  --bg:#1b1a2e; --panel:#221f2b; --ink:#eae7f0; --muted:#a49eb2;
-  --line:#37323f; --accent:#a99cf5; --accent-ink:#1b1826;
-  --chip:#2c2836; --fig:#2a2633;
-}
-*{box-sizing:border-box}
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  -webkit-text-size-adjust:100%;
-}
-.wrap{max-width:820px;margin:0 auto;padding:0 20px 72px}
-header{padding:38px 0 22px}
-h1{margin:0;font-size:30px;line-height:1.15;letter-spacing:-.02em;font-weight:800}
-header a.site{color:var(--accent);font-size:14px;text-decoration:none;border-bottom:1px solid currentColor}
-header a.site:hover{opacity:.75}
-header p.kicker{margin:10px 0 0;color:var(--muted);font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+     color:var(--ink);line-height:1.6;background:var(--bg)}
 
-nav{
-  position:sticky;top:0;z-index:5;background:var(--bg);
-  border-bottom:1px solid var(--line);
-  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
-}
-nav::-webkit-scrollbar{display:none}
-nav button{
-  flex:0 0 auto;appearance:none;background:none;border:0;
-  font:600 14px/1 inherit;color:var(--muted);
-  padding:14px 14px;cursor:pointer;white-space:nowrap;
-  border-bottom:2px solid transparent;margin-bottom:-1px;
-}
-nav button:hover{color:var(--ink)}
-nav button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
-nav button:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:4px}
+header{background:linear-gradient(135deg,#5b3fd6,#7f69df);color:#fff;
+       padding:2rem 1rem;text-align:center}
+header h1{font-size:1.8rem;margin-bottom:.3rem}
+header p{opacity:.9;font-size:1rem}
 
-main{background:var(--panel);border:1px solid var(--line);border-top:0;
-  border-radius:0 0 14px 14px;padding:28px 30px 34px}
-section[hidden]{display:none}
-h3{margin:26px 0 8px;font-size:16px;font-weight:700;letter-spacing:-.01em}
-section > :first-child{margin-top:0}
-p{margin:0 0 14px}
-p.lead{color:var(--muted)}
-ul,ol{margin:0 0 14px;padding-left:26px}
-li{margin:0 0 6px}
-ol.steps{padding-left:30px}
-ol.steps li::marker{font-variant-numeric:tabular-nums;color:var(--muted)}
+nav{background:var(--panel);border-bottom:1px solid var(--line);padding:.5rem 1rem;
+    position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center}
+nav a{text-decoration:none;color:var(--accent);padding:.4rem .8rem;border-radius:6px;
+      font-size:.9rem;font-weight:500;transition:background .2s}
+nav a:hover,nav a.active{background:var(--accent-soft)}
 
-.qa{padding:0 0 6px;margin:0 0 20px;border-bottom:1px solid var(--line)}
-.qa:last-child{border-bottom:0}
-.q{font-weight:700}
-.circ{display:inline-flex;align-items:center;justify-content:center;
-  width:22px;height:22px;border-radius:50%;margin:0 2px;vertical-align:-5px}
+main{max-width:700px;margin:1.5rem auto;padding:0 1rem}
+section{background:var(--panel);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;
+        box-shadow:0 1px 3px rgba(0,0,0,.1);scroll-margin-top:4rem}
+section h2{color:var(--accent);font-size:1.3rem;margin-bottom:1rem;padding-bottom:.5rem;
+           border-bottom:2px solid var(--accent-soft)}
+section h3{font-size:1rem;font-weight:600;margin-top:1rem;margin-bottom:.3rem}
+section p{margin-bottom:.8rem}
+section ul,section ol{margin-left:1.2rem;margin-bottom:.8rem}
+section li{margin-bottom:.3rem}
+section strong{font-weight:600}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
 
-details.opts{border:1px solid var(--line);border-radius:10px;
-  background:var(--chip);padding:0 16px;margin-top:18px}
-details.opts summary{cursor:pointer;font-weight:700;padding:13px 0;list-style:none}
-details.opts summary::-webkit-details-marker{display:none}
-details.opts summary::before{content:"\25B8";display:inline-block;
-  margin-right:8px;color:var(--accent);transition:transform .15s}
-details.opts[open] summary::before{transform:rotate(90deg)}
-details.opts > p{margin-top:0}
-details.opts > p:last-child{padding-bottom:6px}
+figure{margin:1rem 0}
+figure img{width:100%;border-radius:8px;border:1px solid var(--line)}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:.4rem;text-align:center}
 
-figure{margin:20px 0}
-.shots{display:flex;gap:10px}
-.shots img{flex:1 1 0;min-width:0;width:100%;height:190px;object-fit:contain;
-  background:var(--fig);border:1px solid var(--line);border-radius:8px;padding:6px}
-figcaption{margin-top:8px;font-size:13.5px;line-height:1.45;font-style:italic;color:var(--muted)}
+footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.85rem}
+footer a{color:var(--accent);text-decoration:none}
+footer p{margin-bottom:.4rem}
 
-footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
-footer a{color:var(--accent)}
-
-@media (max-width:560px){
-  .wrap{padding:0 14px 56px}
-  main{padding:22px 18px 28px;border-left:0;border-right:0;border-radius:0}
-  h1{font-size:25px}
-  .shots{flex-direction:column}
-  .shots img{height:170px}
-}
-@media print{
-  nav{display:none} section[hidden]{display:block !important}
-  section{break-inside:avoid} main{border:0;padding:0}
+@media (max-width:480px){
+  header h1{font-size:1.4rem}
+  nav a{font-size:.8rem;padding:.3rem .5rem}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 <header>
-  <h1>OwnScore Help</h1>
-  <a class="site" href="https://ownscore.app">ownscore.app</a>
-  <p class="kicker">The same help you get from the <strong>?</strong> button in the app.</p>
+  <h1>OwnScore</h1>
+  <p>Synced Scoreboards — WiFi &amp; Bluetooth Networked Live Updates</p>
 </header>
 
-<nav role="tablist" aria-label="OwnScore help sections">
-  <button role="tab" id="tab-overview" data-slug="overview" aria-controls="panel-overview" aria-selected="true" tabindex="0">Overview</button>
-  <button role="tab" id="tab-quick-start" data-slug="quick-start" aria-controls="panel-quick-start" aria-selected="false" tabindex="-1">Quick Start</button>
-  <button role="tab" id="tab-controls" data-slug="controls" aria-controls="panel-controls" aria-selected="false" tabindex="-1">Controls</button>
-  <button role="tab" id="tab-lock-key" data-slug="lock-key" aria-controls="panel-lock-key" aria-selected="false" tabindex="-1">Lock/Key</button>
-  <button role="tab" id="tab-wifi" data-slug="wifi" aria-controls="panel-wifi" aria-selected="false" tabindex="-1">WiFi</button>
-  <button role="tab" id="tab-bluetooth" data-slug="bluetooth" aria-controls="panel-bluetooth" aria-selected="false" tabindex="-1">Bluetooth</button>
-  <button role="tab" id="tab-vpn" data-slug="vpn" aria-controls="panel-vpn" aria-selected="false" tabindex="-1">VPN</button>
-  <button role="tab" id="tab-faq" data-slug="faq" aria-controls="panel-faq" aria-selected="false" tabindex="-1">FAQ</button>
+<nav aria-label="OwnScore help sections">
+  <a href="#overview">Overview</a>
+  <a href="#quick-start">Quick Start</a>
+  <a href="#controls">Controls</a>
+  <a href="#lock-key">Lock/Key</a>
+  <a href="#wifi">WiFi</a>
+  <a href="#bluetooth">Bluetooth</a>
+  <a href="#vpn">VPN</a>
+  <a href="#faq">FAQ</a>
 </nav>
 
 <main>
-<section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+<section id="overview">
+<h2>Overview</h2>
 <p>No scoreboard?<br>No Problem.</p>
 <p>OwnScore solves the problem at sports venues with no scoreboard or a scoreboard with limited visibility by turning everyone's phones into their OwnScore board.</p>
 <p>All it takes is one device running as Caster and one or more devices running as Viewers. OwnScore operates in a server-client(s) manner on the local WiFi network (no server on the internet is involved). It tests the WiFi network on its own and configures itself to use whatever the network allows, so there is nothing for you to choose.</p>
 <p>If the network turns out to be unusable, or there is no WiFi at all, OwnScore can still fully function using Bluetooth.</p>
 </section>
-<section role="tabpanel" id="panel-quick-start" aria-labelledby="tab-quick-start" hidden>
+<section id="quick-start">
+<h2>Quick Start</h2>
 <p class="lead">To use OwnScore, you must have at least two devices with OwnScore installed.<br>If available, connect both devices to the same WiFi network.<br>Start OwnScore on both devices — the Select Mode screen appears.</p>
 <h3>On the Caster device:</h3>
 <ol class="steps" start="1"><li>Select 'Caster'.</li><li>Push OK.</li><li>Modify Location, Team Names, and Team Colors, as necessary.</li><li>Check 'Unlink Viewers' to start with a new Lock.</li><li>Push 'Start New Game'.</li><li>The network is tested — another device scans the code shown, and the Caster picks how it will send scores.</li><li>The Caster's score screen appears with the game's Key QR Code already showing.</li></ol>
 <h3>On the Viewer device:</h3>
 <ol class="steps" start="8"><li>Select 'Viewer'.</li><li>Push OK.</li><li>Push 'Scan'.</li><li>Scan the Key QR Code on the Caster's score screen.</li><li>The Viewer's score screen appears, and the score follows the Caster from then on.</li></ol>
 </section>
-<section role="tabpanel" id="panel-controls" aria-labelledby="tab-controls" hidden>
+<section id="controls">
+<h2>Controls</h2>
 <h3>Score Controls:</h3>
 <p>The following controls work on teams for which a device was granted control (does not have a lock icon next to its name). You can control the score of a locked team by tapping and holding the locked team name, which will undim the team score and name and allow you to change its score.</p>
 <ul><li>Swipe up on a score: +1</li><li>Two-finger swipe up: +2</li><li>Three-finger swipe up: +3</li><li>Swipe down on a score: -1</li><li>Two-finger swipe down: -2</li><li>Three-finger swipe down: -3</li><li>Horizontal swipe left: Undo</li><li>Horizontal swipe right: Redo</li></ul>
@@ -149,7 +104,8 @@ footer a{color:var(--accent)}
 <h3>Screen Lock:</h3>
 <ul><li>Long press both scores simultaneously: Toggle screen lock</li><li>When locked: screen dims after 5 seconds</li><li>Tap anywhere: Wake screen for 5 seconds</li></ul>
 </section>
-<section role="tabpanel" id="panel-lock-key" aria-labelledby="tab-lock-key" hidden>
+<section id="lock-key">
+<h2>Lock/Key</h2>
 <p>Every game broadcast carries a Lock, and its Key is handed out as a Key QR Code.</p>
 <p>A viewer scans the Key QR Code to find the game and follow it.</p>
 <p>The Lock decides which games a viewer shows you, not who can overhear them: scores are broadcast openly, so treat them as public within radio range. What the Lock protects is control — a viewer holding the Key can ask to change the score, and only the Caster can grant that.</p>
@@ -158,18 +114,21 @@ footer a{color:var(--accent)}
 <p>A lock can be shared amongst casters by copying the Lock QR Code, allowing viewers with the matching key to unlock games from multiple casters using the same lock.</p>
 <p>A viewer can scan multiple Key QR Codes, allowing them to access several groups of games, each group under its own lock.</p>
 </section>
-<section role="tabpanel" id="panel-wifi" aria-labelledby="tab-wifi" hidden>
+<section id="wifi">
+<h2>WiFi</h2>
 <p>OwnScore is designed to work optimally on the local WiFi network. But many public WiFi networks have settings that inhibit OwnScore from functioning optimally. To get around these network configuration issues, OwnScore automatically tests the network and configures itself to use whatever the network allows, so there is nothing for you to choose. If nothing works, OwnScore resorts to using Bluetooth instead of WiFi. If Bluetooth's distance and environmental limitations make OwnScore unusable, there are several changes that can be done to make WiFi work with OwnScore.</p>
 <details class="opts"><summary>WiFi Options</summary><p>If Bluetooth does not meet your needs, there are a few things you can try to get WiFi to work with OwnScore:</p><p>1. Have the network administrator turn off AP Isolation (sometimes called Client Isolation).</p>
 <p>2. If you are on a guest WiFi network, AP Isolation is often turned on by default. Try switching to a non-guest WiFi network.</p>
 <p>3. Buy a small, cheap travel router and connect it to the WiFi in bridge or repeater mode, then have all devices using OwnScore connect to the WiFi network of the travel router.</p>
 <p>4. Start a hotspot on a phone and have all devices you use join the hotspot. Be aware that all internet traffic of any of the devices will go through the hotspot.</p></details>
 </section>
-<section role="tabpanel" id="panel-bluetooth" aria-labelledby="tab-bluetooth" hidden>
+<section id="bluetooth">
+<h2>Bluetooth</h2>
 <p>If WiFi is not available or its settings make it unusable by OwnScore, OwnScore resorts to using Bluetooth. But Bluetooth has distance limitations depending on the environment (how many Bluetooth and WiFi devices are active in your vicinity). Indoors that distance is usually 10-30 meters. Outdoors it is farther.</p>
 <p>If OwnScore is using Bluetooth, if the delay value shown in the lower right corner of the Viewer score screen is greater than 5 seconds, there is too much interference from Bluetooth and WiFi devices or the Viewer is just too far away from the Caster and the Viewer needs to move closer to the Caster.</p>
 </section>
-<section role="tabpanel" id="panel-vpn" aria-labelledby="tab-vpn" hidden>
+<section id="vpn">
+<h2>VPN</h2>
 <p>A VPN (Virtual Private Network) on any device can prevent OwnScore from working over WiFi.</p>
 <p>VPNs route network traffic through a remote server, which can stop devices on the same WiFi network from communicating directly with each other. When that happens the network compatibility test fails and OwnScore falls back to Bluetooth.</p>
 <p>If OwnScore is not working as expected:</p>
@@ -178,7 +137,8 @@ footer a{color:var(--accent)}
 <p>3. If you must use a VPN, check if it has an "Allow Local Network Access" or "Split Tunneling" option that lets local network traffic bypass the VPN.</p>
 <p>Note: iCloud Private Relay (in Settings &gt; Apple Account &gt; iCloud) can also interfere. Try disabling it if you experience issues.</p>
 </section>
-<section role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" hidden>
+<section id="faq">
+<h2>FAQ</h2>
 <div class="qa"><p class="q">Q: Why can I save invalid set scores (where one score is not 25 or 15, or not a win by 2)?</p><p>A: Because rules can change, OwnScore does not check for valid scores and trusts that the user operating the Caster enters valid scores.</p></div>
 <div class="qa"><p class="q">Q: Can any score update be undone?</p><p>A: Yes, even marking a score as Final. Just swipe left over either score.</p></div>
 <div class="qa"><p class="q">Q: How do I switch from Viewer to Caster or vice versa?</p><p>A: OwnScore stays in the same mode the entire time that it runs, so to switch modes, you must kill the app and restart OwnScore, selecting the other mode.</p></div>
@@ -193,40 +153,29 @@ footer a{color:var(--accent)}
 </main>
 
 <footer>
-  <p>OwnScore keeps every game on the local network — nothing is sent over the internet.
-  <a href="https://apps.apple.com/app/id6759013906">Get OwnScore</a> &middot;
-  <a href="mailto:support@ownscore.app">support@ownscore.app</a></p>
+  <p>OwnScore keeps every game on the local network &mdash; nothing is sent over the internet.</p>
+  <p><a href="https://apps.apple.com/app/id6759013906">Get OwnScore</a> &middot;
+     <a href="mailto:support@ownscore.app">support@ownscore.app</a> &middot;
+     <a href="https://ownscore.app">ownscore.app</a></p>
 </footer>
-</div>
 
 <script>
+// Highlight the section currently in view. Progressive enhancement only: with
+// no JS the anchors still work and every section is already on the page.
 (function () {
-  var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
-  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
-
-  function show(i, focus) {
-    tabs.forEach(function (t, j) {
-      t.setAttribute('aria-selected', j === i ? 'true' : 'false');
-      t.tabIndex = j === i ? 0 : -1;
-      panels[j].hidden = j !== i;
+  var links = [].slice.call(document.querySelectorAll('nav a'));
+  var secs  = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function mark() {
+    var best = 0, top = 1e9;
+    secs.forEach(function (sec, i) {
+      if (!sec) return;
+      var d = Math.abs(sec.getBoundingClientRect().top - 80);
+      if (d < top) { top = d; best = i; }
     });
-    if (focus) tabs[i].focus();
-    if (history.replaceState) history.replaceState(null, '', '#' + tabs[i].dataset.slug);
+    links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
   }
-
-  tabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { show(i); });
-    t.addEventListener('keydown', function (e) {
-      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (d) { e.preventDefault(); show((i + d + tabs.length) % tabs.length, true); }
-      if (e.key === 'Home') { e.preventDefault(); show(0, true); }
-      if (e.key === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
-    });
-  });
-
-  var slug = location.hash.replace('#', '');
-  var start = tabs.findIndex(function (t) { return t.dataset.slug === slug; });
-  show(start < 0 ? 0 : start);
+  window.addEventListener('scroll', mark, { passive: true });
+  mark();
 })();
 </script>
 </body>
