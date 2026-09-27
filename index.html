@@ -1,195 +1,233 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OwnScore - App Support</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OwnScore Help</title>
+<meta name="description" content="OwnScore in-app help: setup, controls, Lock and Key, WiFi, Bluetooth, VPN and FAQ.">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #333; line-height: 1.6; background: #f5f5f5; }
-  header { background: linear-gradient(135deg, #7b1fa2, #9c27b0); color: white; padding: 2rem 1rem; text-align: center; }
-  header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
-  header p { opacity: 0.9; font-size: 1rem; }
-  nav { background: white; border-bottom: 1px solid #ddd; padding: 0.5rem 1rem; position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; }
-  nav a { text-decoration: none; color: #7b1fa2; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; transition: background 0.2s; }
-  nav a:hover, nav a.active { background: #f3e5f5; }
-  main { max-width: 700px; margin: 1.5rem auto; padding: 0 1rem; }
-  section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-  section h2 { color: #7b1fa2; font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #f3e5f5; }
-  section h3 { font-size: 1rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.3rem; }
-  section p { margin-bottom: 0.8rem; }
-  section ul { margin-left: 1.2rem; margin-bottom: 0.8rem; }
-  section li { margin-bottom: 0.3rem; }
-  .step-list { margin-left: 1.2rem; margin-bottom: 0.8rem; }
-  footer { text-align: center; padding: 2rem 1rem; color: #999; font-size: 0.85rem; }
-  footer a { color: #7b1fa2; text-decoration: none; }
-  @media (max-width: 480px) { header h1 { font-size: 1.4rem; } nav a { font-size: 0.8rem; padding: 0.3rem 0.5rem; } }
+:root{
+  color-scheme: light dark;
+  --bg:#f7f5fa; --panel:#ffffff; --ink:#1d1b24; --muted:#5d5869;
+  --line:#e2dde9; --accent:#5b3fd6; --accent-ink:#ffffff;
+  --chip:#efebf6; --fig:#f3f1f6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1a2e; --panel:#221f2b; --ink:#eae7f0; --muted:#a49eb2;
+    --line:#37323f; --accent:#a99cf5; --accent-ink:#1b1826;
+    --chip:#2c2836; --fig:#2a2633;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1a2e; --panel:#221f2b; --ink:#eae7f0; --muted:#a49eb2;
+  --line:#37323f; --accent:#a99cf5; --accent-ink:#1b1826;
+  --chip:#2c2836; --fig:#2a2633;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 72px}
+header{padding:38px 0 22px}
+h1{margin:0;font-size:30px;line-height:1.15;letter-spacing:-.02em;font-weight:800}
+header a.site{color:var(--accent);font-size:14px;text-decoration:none;border-bottom:1px solid currentColor}
+header a.site:hover{opacity:.75}
+header p.kicker{margin:10px 0 0;color:var(--muted);font-size:14px}
+
+nav{
+  position:sticky;top:0;z-index:5;background:var(--bg);
+  border-bottom:1px solid var(--line);
+  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  flex:0 0 auto;appearance:none;background:none;border:0;
+  font:600 14px/1 inherit;color:var(--muted);
+  padding:14px 14px;cursor:pointer;white-space:nowrap;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+}
+nav button:hover{color:var(--ink)}
+nav button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+nav button:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:4px}
+
+main{background:var(--panel);border:1px solid var(--line);border-top:0;
+  border-radius:0 0 14px 14px;padding:28px 30px 34px}
+section[hidden]{display:none}
+h3{margin:26px 0 8px;font-size:16px;font-weight:700;letter-spacing:-.01em}
+section > :first-child{margin-top:0}
+p{margin:0 0 14px}
+p.lead{color:var(--muted)}
+ul,ol{margin:0 0 14px;padding-left:26px}
+li{margin:0 0 6px}
+ol.steps{padding-left:30px}
+ol.steps li::marker{font-variant-numeric:tabular-nums;color:var(--muted)}
+
+.qa{padding:0 0 6px;margin:0 0 20px;border-bottom:1px solid var(--line)}
+.qa:last-child{border-bottom:0}
+.q{font-weight:700}
+.circ{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;margin:0 2px;vertical-align:-5px}
+
+details.opts{border:1px solid var(--line);border-radius:10px;
+  background:var(--chip);padding:0 16px;margin-top:18px}
+details.opts summary{cursor:pointer;font-weight:700;padding:13px 0;list-style:none}
+details.opts summary::-webkit-details-marker{display:none}
+details.opts summary::before{content:"\25B8";display:inline-block;
+  margin-right:8px;color:var(--accent);transition:transform .15s}
+details.opts[open] summary::before{transform:rotate(90deg)}
+details.opts > p{margin-top:0}
+details.opts > p:last-child{padding-bottom:6px}
+
+figure{margin:20px 0}
+.shots{display:flex;gap:10px}
+.shots img{flex:1 1 0;min-width:0;width:100%;height:190px;object-fit:contain;
+  background:var(--fig);border:1px solid var(--line);border-radius:8px;padding:6px}
+figcaption{margin-top:8px;font-size:13.5px;line-height:1.45;font-style:italic;color:var(--muted)}
+
+footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--accent)}
+
+@media (max-width:560px){
+  .wrap{padding:0 14px 56px}
+  main{padding:22px 18px 28px;border-left:0;border-right:0;border-radius:0}
+  h1{font-size:25px}
+  .shots{flex-direction:column}
+  .shots img{height:170px}
+}
+@media print{
+  nav{display:none} section[hidden]{display:block !important}
+  section{break-inside:avoid} main{border:0;padding:0}
+}
 </style>
 </head>
 <body>
-
+<div class="wrap">
 <header>
-  <h1>OwnScore</h1>
-  <p>Synced Scoreboards &mdash; WiFi &amp; Bluetooth Networked Live Updates</p>
+  <h1>OwnScore Help</h1>
+  <a class="site" href="https://ownscore.app">ownscore.app</a>
+  <p class="kicker">The same help you get from the <strong>?</strong> button in the app.</p>
 </header>
 
-<nav>
-  <a href="#overview">Overview</a>
-  <a href="#quickstart">Quick Start</a>
-  <a href="#controls">Controls</a>
-  <a href="#lockkey">Lock/Key</a>
-  <a href="#wifi">WiFi</a>
-  <a href="#bluetooth">Bluetooth</a>
-  <a href="#vpn">VPN</a>
-  <a href="#faq">FAQ</a>
+<nav role="tablist" aria-label="OwnScore help sections">
+  <button role="tab" id="tab-overview" data-slug="overview" aria-controls="panel-overview" aria-selected="true" tabindex="0">Overview</button>
+  <button role="tab" id="tab-quick-start" data-slug="quick-start" aria-controls="panel-quick-start" aria-selected="false" tabindex="-1">Quick Start</button>
+  <button role="tab" id="tab-controls" data-slug="controls" aria-controls="panel-controls" aria-selected="false" tabindex="-1">Controls</button>
+  <button role="tab" id="tab-lock-key" data-slug="lock-key" aria-controls="panel-lock-key" aria-selected="false" tabindex="-1">Lock/Key</button>
+  <button role="tab" id="tab-wifi" data-slug="wifi" aria-controls="panel-wifi" aria-selected="false" tabindex="-1">WiFi</button>
+  <button role="tab" id="tab-bluetooth" data-slug="bluetooth" aria-controls="panel-bluetooth" aria-selected="false" tabindex="-1">Bluetooth</button>
+  <button role="tab" id="tab-vpn" data-slug="vpn" aria-controls="panel-vpn" aria-selected="false" tabindex="-1">VPN</button>
+  <button role="tab" id="tab-faq" data-slug="faq" aria-controls="panel-faq" aria-selected="false" tabindex="-1">FAQ</button>
 </nav>
 
 <main>
-
-<section id="overview">
-  <h2>Overview</h2>
-  <p>No scoreboard? No Problem.</p>
-  <p>OwnScore solves the problem at sports venues with no scoreboard or a scoreboard with limited visibility by turning everyone's phones into their OwnScore board.</p>
-  <p>All it takes is one device running as Caster and one or more devices running as Viewers. OwnScore operates in a server-client(s) manner on the local WiFi network (no server on the internet is involved). It automatically tests the WiFi network to determine which of 3 WiFi communication modes to use if the local WiFi network is fully or partially compatible with OwnScore.</p>
-  <p>If the network test finds the local WiFi network to be incompatible or there is no accessible WiFi network, OwnScore can still fully function using Bluetooth.</p>
+<section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+<p>No scoreboard?<br>No Problem.</p>
+<p>OwnScore solves the problem at sports venues with no scoreboard or a scoreboard with limited visibility by turning everyone's phones into their OwnScore board.</p>
+<p>All it takes is one device running as Caster and one or more devices running as Viewers. OwnScore operates in a server-client(s) manner on the local WiFi network (no server on the internet is involved). It tests the WiFi network on its own and configures itself to use whatever the network allows, so there is nothing for you to choose.</p>
+<p>If the network turns out to be unusable, or there is no WiFi at all, OwnScore can still fully function using Bluetooth.</p>
 </section>
-
-<section id="quickstart">
-  <h2>Quick Start</h2>
-<p>To use OwnScore, you must have at least two devices with OwnScore installed.<br>
-Start OwnScore on both devices - a Select Mode dialog window will appear.</p>
-
-<h3>On one device:</h3>
-<div class="step-list">
-  <p>1. Select Caster, push OK.<br>
-  2. Modify Location, Team Names, and Team Colors, as necessary.<br>
-  3. Push 'Start Score Casting'.<br>
-  4. Caster score screen will appear with a Key QR Code.  Swipe up on score to increment.</p>
-</div>
-
-<h3>On the other device:</h3>
-<div class="step-list">
-  <p>5. Select Viewer, push OK.<br>
-  6. Push Scan.<br>
-  7. Scan Key QR code on Caster score screen (tap to enlarge).</p>
-</div>
-
-<h3>On Caster device:</h3>
-<div class="step-list">
-  <p>8. A dialog box will appear asking to grant control to Remote Device.  Push Grant or Deny.</p>
-</div>
-
-<h3>On Viewer device:</h3>
-<div class="step-list">
-  <p>9. A dialog box will appear confirming that control was requested and was granted or denied.  Then a Score Screen will be displayed with game score.</p>
-</div>
-
-<h3>On both devices:</h3>
-<div class="step-list">
-  <p>10. If control was granted, swiping up over a score increments the score on both devices.</p>
-</div>
+<section role="tabpanel" id="panel-quick-start" aria-labelledby="tab-quick-start" hidden>
+<p class="lead">To use OwnScore, you must have at least two devices with OwnScore installed.<br>If available, connect both devices to the same WiFi network.<br>Start OwnScore on both devices — the Select Mode screen appears.</p>
+<h3>On the Caster device:</h3>
+<ol class="steps" start="1"><li>Select 'Caster'.</li><li>Push OK.</li><li>Modify Location, Team Names, and Team Colors, as necessary.</li><li>Check 'Unlink Viewers' to start with a new Lock.</li><li>Push 'Start New Game'.</li><li>The network is tested — another device scans the code shown, and the Caster picks how it will send scores.</li><li>The Caster's score screen appears with the game's Key QR Code already showing.</li></ol>
+<h3>On the Viewer device:</h3>
+<ol class="steps" start="8"><li>Select 'Viewer'.</li><li>Push OK.</li><li>Push 'Scan'.</li><li>Scan the Key QR Code on the Caster's score screen.</li><li>The Viewer's score screen appears, and the score follows the Caster from then on.</li></ol>
 </section>
-
-<section id="controls">
-  <h2>Controls</h2>
-<h3>Score Controls</h3>
-<ul>
-  <li>Swipe up on a score: +1</li>
-  <li>Two-finger swipe up: +2</li>
-  <li>Three-finger swipe up: +3</li>
-  <li>Swipe down on a score: -1</li>
-  <li>Two-finger swipe down: -2</li>
-  <li>Three-finger swipe down: -3</li>
-  <li>Horizontal swipe left: Undo</li>
-  <li>Horizontal swipe right: Redo</li>
-</ul>
-
-<h3>Buttons</h3>
-<ul>
-  <li>Save (tap): Save current set, advance to next</li>
-  <li>Save (long press): Mark match as Final</li>
-  <li>Zero (tap): Reset current set to 0-0</li>
-  <li>Zero (long press): Clear all sets</li>
-  <li>Stop: Stop broadcasting</li>
-</ul>
-
-<h3>Swap Area (between scores)</h3>
-<ul>
-  <li>Tap: Local swap (switches sides on this device only)</li>
-  <li>Long press: Global swap (switches sides on all devices)</li>
-</ul>
-
-<h3>QR Code</h3>
-<ul>
-  <li>Tap QR code: Enlarge for easy scanning</li>
-</ul>
-
-<h3>Screen Lock</h3>
-<ul>
-  <li>Long press both scores simultaneously: Toggle screen lock</li>
-  <li>When locked: screen dims after 5 seconds</li>
-  <li>Tap anywhere: Wake screen for 5 seconds</li>
-</ul>
+<section role="tabpanel" id="panel-controls" aria-labelledby="tab-controls" hidden>
+<h3>Score Controls:</h3>
+<p>The following controls work on teams for which a device was granted control (does not have a lock icon next to its name). You can control the score of a locked team by tapping and holding the locked team name, which will undim the team score and name and allow you to change its score.</p>
+<ul><li>Swipe up on a score: +1</li><li>Two-finger swipe up: +2</li><li>Three-finger swipe up: +3</li><li>Swipe down on a score: -1</li><li>Two-finger swipe down: -2</li><li>Three-finger swipe down: -3</li><li>Horizontal swipe left: Undo</li><li>Horizontal swipe right: Redo</li></ul>
+<h3>Buttons:</h3>
+<ul><li>Save (tap): Save current set, advance to next</li><li>Save (long press): Mark match as Final</li><li>Zero (tap): Zero the game score, keeping completed sets</li><li>Zero (long press): Zero the game score and every completed set</li><li>Stop: Stop broadcasting</li></ul>
+<h3>Swap Button:</h3>
+<ul><li>Tap: Local swap (switches sides on this device only)</li><li>Long press: Global swap (switches sides on all devices)</li></ul>
+<h3>QR Code:</h3>
+<ul><li>Tap QR code: Enlarge for easy scanning</li></ul>
+<h3>Screen Lock:</h3>
+<ul><li>Long press both scores simultaneously: Toggle screen lock</li><li>When locked: screen dims after 5 seconds</li><li>Tap anywhere: Wake screen for 5 seconds</li></ul>
 </section>
-
-<section id="lockkey">
-  <h2>Lock/Key</h2>
-  <p>All game broadcasts are locked and a key is provided through a Key QR Code.</p>
-  <p>A viewer must scan the Key QR Code to find and unlock the game broadcast.</p>
-  <p>Once a viewer has scanned a Key QR Code, it is displayed on its score screen so other viewers can scan it.</p>
-  <p>A lock can be shared amongst casters by copying the Lock QR Code, allowing viewers with key to unlock multiple games using the same lock.</p>
-  <p>A viewer can scan multiple Key QR Codes, allowing them to access multiple groups of games using the same lock.</p>
+<section role="tabpanel" id="panel-lock-key" aria-labelledby="tab-lock-key" hidden>
+<p>Every game broadcast carries a Lock, and its Key is handed out as a Key QR Code.</p>
+<p>A viewer scans the Key QR Code to find the game and follow it.</p>
+<p>The Lock decides which games a viewer shows you, not who can overhear them: scores are broadcast openly, so treat them as public within radio range. What the Lock protects is control — a viewer holding the Key can ask to change the score, and only the Caster can grant that.</p>
+<p>Once a viewer has scanned a Key QR Code, it is displayed on its score screen so other viewers can scan it.</p>
+<p>A Key QR Code does not have to be scanned in person. Long press it to send it as an image — by Messages, AirDrop or Mail — and the viewer receiving it reads it with the Photo button on its list screen.</p>
+<p>A lock can be shared amongst casters by copying the Lock QR Code, allowing viewers with the matching key to unlock games from multiple casters using the same lock.</p>
+<p>A viewer can scan multiple Key QR Codes, allowing them to access several groups of games, each group under its own lock.</p>
 </section>
-
-<section id="wifi">
-  <h2>WiFi</h2>
-<p>OwnScore is designed to work optimally on the local WiFi network. But many public WiFi networks have settings that inhibit OwnScore from functioning optimally. To get around these network configuration issues, OwnScore automatically tests the network and chooses one of three WiFi communications modes (W0, W1, W2) that will work within the network settings.</p>
-<p>If none of the three communication modes will work, OwnScore resorts to using Bluetooth instead of WiFi. If Bluetooth's distance and environmental limitations make OwnScore unusable, there are several changes that could be done to make WiFi work.</p>
-
-<h3>WiFi Options</h3>
-<p>If Bluetooth does not meet your needs, there are a few things you can try to get WiFi to work:</p>
-<ul>
-  <li>Have the network administrator turn off AP Isolation (sometimes called Client Isolation).</li>
-  <li>If you are on a guest WiFi network, AP Isolation is often turned on by default. Try switching to a non-guest WiFi network.</li>
-  <li>Buy a small, cheap travel router and connect it to the WiFi in bridge or repeater mode, then have all devices connect to the WiFi network of the travel router.</li>
-</ul>
+<section role="tabpanel" id="panel-wifi" aria-labelledby="tab-wifi" hidden>
+<p>OwnScore is designed to work optimally on the local WiFi network. But many public WiFi networks have settings that inhibit OwnScore from functioning optimally. To get around these network configuration issues, OwnScore automatically tests the network and configures itself to use whatever the network allows, so there is nothing for you to choose. If nothing works, OwnScore resorts to using Bluetooth instead of WiFi. If Bluetooth's distance and environmental limitations make OwnScore unusable, there are several changes that can be done to make WiFi work with OwnScore.</p>
+<details class="opts"><summary>WiFi Options</summary><p>If Bluetooth does not meet your needs, there are a few things you can try to get WiFi to work with OwnScore:</p><p>1. Have the network administrator turn off AP Isolation (sometimes called Client Isolation).</p>
+<p>2. If you are on a guest WiFi network, AP Isolation is often turned on by default. Try switching to a non-guest WiFi network.</p>
+<p>3. Buy a small, cheap travel router and connect it to the WiFi in bridge or repeater mode, then have all devices using OwnScore connect to the WiFi network of the travel router.</p>
+<p>4. Start a hotspot on a phone and have all devices you use join the hotspot. Be aware that all internet traffic of any of the devices will go through the hotspot.</p></details>
 </section>
-
-<section id="bluetooth">
-  <h2>Bluetooth</h2>
-  <p>If WiFi is not available or its settings make it unusable by OwnScore, OwnScore resorts to using Bluetooth. But Bluetooth has distance limitations depending on the environment (how many Bluetooth and WiFi devices are active in your vicinity). Indoors that distance is usually 3-10 meters. Outdoors it is farther.</p>
-  <p>If OwnScore is using Bluetooth, if the delay value shown in the lower right corner of the Viewer score screen is greater than 5 seconds, there is too much interference from Bluetooth and WiFi devices or the Viewer is just too far away from the Caster and the Viewer needs to move closer to the Caster.</p>
+<section role="tabpanel" id="panel-bluetooth" aria-labelledby="tab-bluetooth" hidden>
+<p>If WiFi is not available or its settings make it unusable by OwnScore, OwnScore resorts to using Bluetooth. But Bluetooth has distance limitations depending on the environment (how many Bluetooth and WiFi devices are active in your vicinity). Indoors that distance is usually 10-30 meters. Outdoors it is farther.</p>
+<p>If OwnScore is using Bluetooth, if the delay value shown in the lower right corner of the Viewer score screen is greater than 5 seconds, there is too much interference from Bluetooth and WiFi devices or the Viewer is just too far away from the Caster and the Viewer needs to move closer to the Caster.</p>
 </section>
-
-<section id="vpn">
-  <h2>VPN</h2>
-  <p>A VPN (Virtual Private Network) on any device can prevent OwnScore from working over WiFi.</p>
-  <p>VPNs route network traffic through a remote server, which prevents devices on the same WiFi network from communicating directly with each other. This causes the network compatibility test to fail and forces OwnScore to fall back to Bluetooth.</p>
-  <p>If OwnScore is not working as expected:</p>
-<ul>
-  <li>Check if a VPN is active on your device (look for a VPN icon in the status bar or check Settings &gt; General &gt; VPN &amp; Device Management).</li>
-  <li>Disable the VPN on all devices running OwnScore.</li>
-  <li>If you must use a VPN, check if it has a "Allow Local Network Access" or "Split Tunneling" option that lets local network traffic bypass the VPN.</li>
-</ul>
+<section role="tabpanel" id="panel-vpn" aria-labelledby="tab-vpn" hidden>
+<p>A VPN (Virtual Private Network) on any device can prevent OwnScore from working over WiFi.</p>
+<p>VPNs route network traffic through a remote server, which can stop devices on the same WiFi network from communicating directly with each other. When that happens the network compatibility test fails and OwnScore falls back to Bluetooth.</p>
+<p>If OwnScore is not working as expected:</p>
+<p>1. Check if a VPN is active on your device (look for a VPN icon in the status bar or check Settings &gt; General &gt; VPN &amp; Device Management).</p>
+<p>2. Disable the VPN on all devices running OwnScore.</p>
+<p>3. If you must use a VPN, check if it has an "Allow Local Network Access" or "Split Tunneling" option that lets local network traffic bypass the VPN.</p>
 <p>Note: iCloud Private Relay (in Settings &gt; Apple Account &gt; iCloud) can also interfere. Try disabling it if you experience issues.</p>
 </section>
-
-<section id="faq">
-  <h2>FAQ</h2>
-  <p><strong>Q: I can save invalid set scores (where one score is not 25 or 15, or not win by 2).</strong></p>
-  <p>A: Because rules can change, OwnScore does not check for valid scores and trusts that the user operating the Caster enters valid scores.</p>
-  <p><strong>Q: Can any score update be undone?</strong></p>
-  <p>A: Yes, even marking a score as Final.</p>
-  <p><strong>Q: Are there some WiFi settings that prevent OwnScore from operating?</strong></p>
-  <p>A: Yes, WiFi networks are very complex and have settings that could prevent OwnScore from operating. If network settings cannot be modified, OwnScore can use Bluetooth instead of WiFi. Depending on your environment (how many Bluetooth and WiFi devices are in close physical proximity), Bluetooth may operate very well, especially outdoors. If OwnScore cannot use WiFi, give Bluetooth a try, you may be surprised.</p>
+<section role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" hidden>
+<div class="qa"><p class="q">Q: Why can I save invalid set scores (where one score is not 25 or 15, or not a win by 2)?</p><p>A: Because rules can change, OwnScore does not check for valid scores and trusts that the user operating the Caster enters valid scores.</p></div>
+<div class="qa"><p class="q">Q: Can any score update be undone?</p><p>A: Yes, even marking a score as Final. Just swipe left over either score.</p></div>
+<div class="qa"><p class="q">Q: How do I switch from Viewer to Caster or vice versa?</p><p>A: OwnScore stays in the same mode the entire time that it runs, so to switch modes, you must kill the app and restart OwnScore, selecting the other mode.</p></div>
+<div class="qa"><p class="q">Q: How do I get out of Show Bars or Help Mode, or make the floating QR Code disappear?</p><p>A: Tap anywhere outside the Buttons or Yellow-Bordered Boxes.</p></div>
+<div class="qa"><p class="q">Q: What is with the Circle Buttons (<span class="circ" style="background:#ede0f4;color:#6a1b9a;border:1px solid #c7c7c7" aria-hidden="true"><svg viewBox="0 0 18 18" width="18" height="18"><path d="M5 10.5 9 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="circ" style="background:#2196f3;color:#ffffff" aria-hidden="true"><svg viewBox="0 0 18 18" width="18" height="18"><text x="9" y="13.2" text-anchor="middle" font-size="11" font-weight="700" font-family="inherit" fill="currentColor">?</text></svg></span><span class="circ" style="background:#ede0f4;color:#6a1b9a;border:1px solid #c7c7c7" aria-hidden="true"><svg viewBox="0 0 18 18" width="18" height="18"><g fill="currentColor"><rect x="3" y="3" width="4.5" height="4.5" rx="1"/><rect x="10.5" y="3" width="4.5" height="4.5" rx="1"/><rect x="3" y="10.5" width="4.5" height="4.5" rx="1"/><rect x="10.5" y="10.5" width="2" height="2"/><rect x="13" y="13" width="2" height="2"/></g></svg></span><span class="circ" style="background:#2196f3;color:#ffffff" aria-hidden="true"><svg viewBox="0 0 18 18" width="18" height="18"><path d="M9 3.5v7m0 0 3-3m-3 3-3-3M4 14h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>)?</p><p>A: To maximize the size of fonts for the score to be seen from as far away as possible, commands and functionality are hidden and accessed through the circle buttons.</p></div>
+<div class="qa"><p class="q">Q: How do I send a Key QR code to another device?</p><p>A: Long tap the QR Code button to bring up a dialog to AirDrop, text, email, etc. the image to another device.</p>
+<p>Or alternatively, tap the QR Code button to show the QR Code, take a screen shot that includes it, then email, text, AirDrop, etc. it to another device.</p></div>
+<div class="qa"><p class="q">Q: Are there some WiFi settings that prevent OwnScore from operating?</p><p>A: Yes, WiFi networks are very complex and have settings that could prevent OwnScore from operating. If network settings cannot be modified, OwnScore can use Bluetooth instead of WiFi. Depending on your environment (how many Bluetooth and WiFi devices are in close physical proximity), Bluetooth may operate very well, especially outdoors. If OwnScore cannot use WiFi, give Bluetooth a try — you may be surprised.</p>
+<p>The Network Test may conclude that WiFi is unusable and default to using Bluetooth. If you feel that something about WiFi is interfering with OwnScore working properly, manually specify using Bluetooth by checking "Use Bluetooth" in the Caster Setup Screen.</p></div>
+<div class="qa"><p class="q">Q: Can Casters broadcast onto the internet (Can grandma receive scores at her home)?</p><p>A: No, OwnScore is specifically designed to operate in the local network using peer-to-peer communications and not send any game data over the internet.</p></div>
 </section>
-
 </main>
 
 <footer>
-  <p>&copy; 2026 OwnScore. All rights reserved.</p>
-  <p>Contact: <a href="mailto:support@ownscore.app">support@ownscore.app</a></p>
+  <p>OwnScore keeps every game on the local network — nothing is sent over the internet.
+  <a href="https://apps.apple.com/app/id6759013906">Get OwnScore</a> &middot;
+  <a href="mailto:support@ownscore.app">support@ownscore.app</a></p>
 </footer>
+</div>
 
+<script>
+(function () {
+  var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+
+  function show(i, focus) {
+    tabs.forEach(function (t, j) {
+      t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      t.tabIndex = j === i ? 0 : -1;
+      panels[j].hidden = j !== i;
+    });
+    if (focus) tabs[i].focus();
+    if (history.replaceState) history.replaceState(null, '', '#' + tabs[i].dataset.slug);
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(i); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); show((i + d + tabs.length) % tabs.length, true); }
+      if (e.key === 'Home') { e.preventDefault(); show(0, true); }
+      if (e.key === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+    });
+  });
+
+  var slug = location.hash.replace('#', '');
+  var start = tabs.findIndex(function (t) { return t.dataset.slug === slug; });
+  show(start < 0 ? 0 : start);
+})();
+</script>
 </body>
 </html>
